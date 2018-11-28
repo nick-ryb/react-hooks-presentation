@@ -1,3 +1,33 @@
 .rounded{
     border-radius: 50%;
 }
+
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mr-1{
+    margin-right: 10px;
+}
+
+.get-user-btn{
+    border-radius: 10px;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 6px 10px -5px  black inset;
+}
+
+.goo-header{
+    position: fixed;
+    -webkit-text-fill-color: transparent;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    -webkit-text-stroke: 5px white;
+    transform: translate(-50%,-50%);
+    transition: all 400ms;
+}
+

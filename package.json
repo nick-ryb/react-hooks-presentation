@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "next",
     "react-dom": "next",
+    "react-spring": "^6.1.9",
     "spectacle-code-slide": "^0.5.2",
     "spectacle-scripts": "2.0.1"
   },

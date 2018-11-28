@@ -12,8 +12,11 @@ import {
   Quote,
   Slide,
   Text,
+  CodePane,
   Layout,
 } from 'spectacle';
+import CodeSlide from 'spectacle-code-slide';
+
 import './index.css'
 
 import GetUser from './Components/User/GetUser'
@@ -22,6 +25,9 @@ import GetUserHooks from './Components/User/GetUserHooks'
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
 
+import getUserText from './Components/TextComponent/GetUserText'
+import GetUserWithHooksText from './Components/TextComponent/GetUserWithHooksText'
+import GetUserWithUpdateText from './Components/TextComponent/GetUserWithUpdateText'
 
 // Require CSS
 require('normalize.css');
@@ -71,8 +77,39 @@ const Presentation = () => {
               <GetUserHooks gender={userGender ? 'female' : 'male'}/>
             </Layout>
             <button onClick={() => setUserGender(!userGender)}>Change gender</button>
-        </Slide>
-        
+        </Slide>    
+        <CodeSlide 
+            light
+            bgColor="tertiary"
+            textSize={20}
+            transition={[]}
+            lang="javascript"
+            code={getUserText}
+          ranges={[{ loc: [7,13],title: "what's the problem" }]
+          }/>
+          <CodeSlide 
+            light
+            bgColor="tertiary"
+            textSize={20}
+            transition={[]}
+            lang="javascript"
+            overflow="hidden"
+            code={GetUserWithUpdateText}
+            ranges={[{ loc: [13,22],title: "The solution" }]
+          }/>
+          <CodeSlide 
+            light
+            bgColor="tertiary"
+            textSize={20}
+            transition={['slide']}
+            lang="javascript"
+            overflow="hidden"
+            code={GetUserWithHooksText}
+            ranges={[{ loc: [6,12],title: "OR" }]
+          }/>
+          <Slide>
+            <Heading>somthing</Heading>
+          </Slide>
       </Deck>
     );
     return "WTF"

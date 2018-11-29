@@ -3,12 +3,12 @@ import React from 'react'
 import {Heading} from 'spectacle';
 
 const UserCard = ({user}) => {
-    const {name: {title, first, last},picture: {large}} = user
+    const {name: { first, last},picture: {large}} = user
     return (
-        <React.Fragment>
-            <img className="rounded" src={large} alt="user img"/>
-            <Heading size={3} textColor="primary">{title} {first} {last}</Heading>
-        </React.Fragment>
+        <div className="flex-center">
+            <img className="rounded mr-1" src={large} alt="user img"/>
+            <Heading size={6} textColor="primary">{first} {last}</Heading>
+        </div>
     )
 }
 

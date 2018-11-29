@@ -13,6 +13,7 @@ import {
     Slide,
     Text,
     Layout,
+    Fill,
     Image,
     GoToAction,
     Notes,
@@ -20,6 +21,9 @@ import {
     Appear,
     Code
 } from 'spectacle';
+import CodeSlide from 'spectacle-code-slide';
+import Goo from './Components/Goo'
+
 import './index.css'
 
 import GetUser from './Components/User/GetUser'
@@ -29,11 +33,15 @@ import GetUserHooks from './Components/User/GetUserHooks'
 import createTheme from 'spectacle/lib/themes/default';
 
 import hooks_funny_1 from './assets/1_lTaYmnmt1NdkNFh7u6zzkw.png';
+import getUserText from './Components/TextComponent/GetUserText'
+import GetUserWithHooksText from './Components/TextComponent/GetUserWithHooksText'
+import GetUserWithUpdateText from './Components/TextComponent/GetUserWithUpdateText'
 
 // Require CSS
 require('normalize.css');
 
-const OWNER = 'natan'
+
+const OWNER = 'sagiv'
 
 const theme = createTheme(
     {
@@ -50,10 +58,7 @@ const theme = createTheme(
 
 const Presentation = () => {
     const [userGender, setUserGender] = useState(false)
-    const Context = React.createContext([{}, () => {
-    }]);
-    const context = useContext(Context);
-    console.log(context);
+
     if (OWNER === "natan") {
         return (
             <Deck
@@ -103,6 +108,8 @@ const Presentation = () => {
                     <Text margin="10px 0 0" textColor="tertiary" textSize={'30'} style={{direction: 'rtl'}}>
                         - שאלות (של אייל)
                     </Text>
+
+
                 </Slide>
 
                 {/*Introducing Hooks*/}
@@ -219,30 +226,73 @@ const Presentation = () => {
             </Deck>
         )
     }
-    if (OWNER === "sagiv") {
+
+    if(OWNER === "sagiv") {
         return (
-            <Deck
-                transition={['zoom', 'slide']}
-                transitionDuration={500}
-                theme={theme}
-            >
-                <Slide transition={['zoom']} bgColor="primary">
-                    <Heading fit caps lineHeight={1} textColor="secondary">
-                        Hooks
-                    </Heading>
+        <Deck
+            transition={['zoom', 'slide']}
+            transitionDuration={500}
+            theme={theme}
+        >
+                <Slide transition={['zoom']} bgColor="primary" >
+                    <Heading size={1} className="goo-header" caps>hooks</Heading>
+                    <Goo />
                 </Slide>
                 <Slide transition={['fade']} bgColor="tertiary">
                     <Layout>
-                        <GetUser gender={userGender ? 'female' : 'male'}/>
-                        <GetUserHooks gender={userGender ? 'female' : 'male'}/>
+                        <Fill>
+                        <Heading size={4} padding="30px" textColor="primary" caps>with class</Heading>
+                            <GetUser gender={userGender ? 'female' : 'male'}/>
+                        </Fill>
+                        <Appear order={2}>
+                            <Fill>
+                                <Heading size={4} padding="30px" textColor="primary" caps>with hooks</Heading>
+                                <GetUserHooks gender={userGender ? 'female' : 'male'}/>
+                            </Fill>
+                        </Appear>
                     </Layout>
-                    <button onClick={() => setUserGender(!userGender)}>Change gender</button>
+                    <Appear order={1}>
+                        <div className="get-user-btn" onClick={() => setUserGender(!userGender)}>
+                            <Heading size={3} textColor="tertiary" >Get a {userGender ? 'male' : 'female'}</Heading>
+                        </div>
+                    </Appear>
                 </Slide>
-
-            </Deck>
-        );
-        return "WTF"
-    }
+                <CodeSlide
+                    light
+                    bgColor="tertiary"
+                    textSize={20}
+                    transition={[]}
+                    lang="javascript"
+                    code={getUserText}
+                ranges={[{ loc: [7,13],title: "What went wrong" }]
+                }/>
+                <CodeSlide
+                    light
+                    bgColor="tertiary"
+                    textSize={20}
+                    transition={[]}
+                    lang="javascript"
+                    overflow="hidden"
+                    code={GetUserWithUpdateText}
+                    ranges={[{ loc: [13,22],title: "The solution" }]
+                }/>
+                <CodeSlide
+                    light
+                    bgColor="tertiary"
+                    textSize={20}
+                    transition={['slide']}
+                    lang="javascript"
+                    overflow="hidden"
+                    code={GetUserWithHooksText}
+                    ranges={[{ loc: [6,12],title: "OR WE CAN HOOK IT" }]
+                }/>
+                <Slide>
+                    <Heading>קושיות</Heading>
+                </Slide>
+         </Deck>
+    );
+    return "WTF"
+  }
 }
 
 

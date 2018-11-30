@@ -19,9 +19,9 @@ const getUserText = `
         }
         return <Heading textColor="primary">Loading...</Heading>
       }
-    }
+}
 
-    export default GetUser
+export default GetUser
 `
 
 export default getUserText

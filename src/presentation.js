@@ -17,6 +17,7 @@ import {
     Fill,
     Image,
     GoToAction,
+    CodePane,
     Notes
 } from 'spectacle';
 import CodeSlide from 'spectacle-code-slide';
@@ -160,6 +161,12 @@ const Presentation = () => {
                 <Slide transition={['zoom']} bgColor="primary" >
                     <Heading size={1} className="goo-header" caps>hooks</Heading>
                     <Goo />
+                </Slide>
+                <Slide transition={[]} bgColor="primary" >
+                    <Heading fit caps>Lets make a user card</Heading>
+                    <Appear>
+                        <CodePane textSize={15} lang="javascript" source={getUserText.trim()} />
+                    </Appear>
                 </Slide>
                 <Slide transition={['fade']} bgColor="tertiary">
                     <Layout>

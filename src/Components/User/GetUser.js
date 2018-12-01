@@ -26,7 +26,7 @@ class GetUser extends PureComponent {
     if(this.state.user){
       return <UserCard user={this.state.user}/>
     }
-    return <Heading textColor="primary">Loading...</Heading>
+    return <Heading fit textColor="primary">Loading...</Heading>
   }
 }
 

@@ -14,7 +14,7 @@ class GetUserWithUpdate extends PureComponent {
   
     componentDidUpdate(nextProps) {
       if(nextProps.gender !== this.props.gender)
-        fetch(\`https://randomuser.me/api/?gender=\${nextProps.gender}\`)
+        fetch(\`https://randomuser.me/api/?gender=\${this.props.gender}\`)
             .then(resp => resp.json())
             .then(user => this.setState({user: user.results[0]}))
             .catch(console.error)

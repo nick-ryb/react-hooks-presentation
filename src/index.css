@@ -44,3 +44,9 @@ pre.css-iy1s4m{
     transition: all 400ms;
 }
 
+.card-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+}

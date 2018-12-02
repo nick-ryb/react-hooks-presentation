@@ -89,6 +89,11 @@ const Presentation = () => {
                     <div>
 
                         <Text fit>1. Install the latest (v16.7.0-alpha) React version</Text>
+                        <CodePane textSize={25} lang={'javascript'} theme={'dark'}
+                                  source={`"dependencies": {
+                                      "react": "next",
+                                      "react-dom": "next"
+                                  }`}/>
                     </div>
                 </Appear>
                 <Appear order={1}>

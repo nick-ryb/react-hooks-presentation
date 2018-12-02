@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 
 // Import Spectacle Core tags
 import {
-    
+    Image,
     Deck,
     Heading,
     ListItem,
@@ -24,13 +24,24 @@ import './index.css'
 import GetUser from './Components/User/GetUser'
 import GetUserHooks from './Components/User/GetUserHooks'
 
+import Card from './Components/Card'
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
 
 import getUserText from './Components/TextComponent/GetUserText'
+import useStateExampleText from './Components/TextComponent/useStateExampleText'
 import GetUserWithHooksText from './Components/TextComponent/GetUserWithHooksText'
 import GetUserWithUpdateText from './Components/TextComponent/GetUserWithUpdateText'
+import useReduxText from './Components/TextComponent/useReduxText'
+import useIdbText from './Components/TextComponent/useIdbText'
+import useObservableText from './Components/TextComponent/useObservableText'
+import useImmerText from './Components/TextComponent/useImmerText'
 
+
+
+import tweet from './assets/twitterQuote.png'
+import useSessionGif from './assets/useSessionGif.gif'
+import useUndoGif from './assets/useUndo.gif'
 // Require CSS
 require('normalize.css');
 
@@ -63,7 +74,11 @@ const Presentation = () => {
             </Slide>
 
             {/*Introducing Hooks*/}
-            <Slide transition={['fade']} bgColor="tertiary" textColor="primary">
+            <Slide 
+                align="center flex-start"
+                transition={['fade']} 
+                bgColor="tertiary" 
+                textColor="primary">
                 <Heading size={6} textColor="primary" caps fit>
                     Introducing Hooks
                 </Heading>
@@ -81,7 +96,7 @@ const Presentation = () => {
             </Slide>
 
             {/*Get started with Hooks*/}
-            <Slide transition={['fade']} bgColor="tertiary" textColor="primary">
+            <Slide align="center flex-start" transition={['fade']} bgColor="tertiary" textColor="primary">
                 <Heading size={6} caps textColor="primary" fit>
                     Get started with Hooks
                 </Heading>
@@ -99,27 +114,13 @@ const Presentation = () => {
                 <Appear order={1}>
                     <div>
                         <CodePane textSize={25} lang={'javascript'} theme={'dark'}
-                                  source={'import { useState } from \'react\';\n' +
-                                  '\n' +
-                                  'function Example() {\n' +
-                                  '  // Declare a new state variable, which we\'ll call "count"\n' +
-                                  '  const [count, setCount] = useState(0);\n' +
-                                  '\n' +
-                                  '  return (\n' +
-                                  '    <div>\n' +
-                                  '      <p>You clicked {count} times</p>\n' +
-                                  '      <button onClick={() => setCount(count + 1)}>\n' +
-                                  '        Click me\n' +
-                                  '      </button>\n' +
-                                  '    </div>\n' +
-                                  '  );\n' +
-                                  '}'}/>
+                                  source={useStateExampleText}/>
                     </div>
                 </Appear>
             </Slide>
 
             {/*Hooks already in the alpha specs*/}
-            <Slide transition={['fade']} bgColor="tertiary" textColor="primary">
+            <Slide align="center flex-start" transition={['fade']} bgColor="tertiary" textColor="primary">
                 <Heading size={6} caps textColor="primary">
                     Hooks already in the alpha specs
                 </Heading>
@@ -135,7 +136,11 @@ const Presentation = () => {
                             <CodePane textSize={20} lang={'js'}
                                       source={'Same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount in React classes, but unified into a single API.'}/>
                             {/*<Text textSize={20}>Adds the ability to perform side effects from a function component. It has the same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount in React classes, but unified into a single API.</Text>*/}
-                            <ListItem>useContext</ListItem>
+                            <ListItem>useReducer
+                                <CodePane textSize={20} lang={'js'}
+                                          source={'const [state, dispatch] = useReducer(reducer, initialState);'}/>
+                            </ListItem>
+                            
                         </List>
                     </div>
                 </Appear>
@@ -143,10 +148,7 @@ const Presentation = () => {
                     <div>
                         <Text textSize={30}>Additional Hooks:</Text>
                         <List className={'good-list'}>
-                            <ListItem>useReducer
-                                <CodePane textSize={20} lang={'js'}
-                                          source={'const [state, dispatch] = useReducer(reducer, initialState);'}/>
-                            </ListItem>
+                            <ListItem>useContext</ListItem>
                             <ListItem>useCallback</ListItem>
                             <ListItem>useMemo</ListItem>
                             <ListItem>useRef</ListItem>
@@ -180,9 +182,13 @@ const Presentation = () => {
 
             {/*Why Hooks (or why Class is bad)*/}
             <Slide transition={['fade']} bgColor="tertiary" textColor="primary">
-                <Heading size={6} caps textColor="primary" fit>
-                    Why Hooks? (or why Class is bad...)
+                <Heading size={2} caps textColor="primary" >
+                   so
                 </Heading>
+                <Heading size={4} caps textColor="primary" >
+                    Why Hooks? 
+                </Heading>
+                <Heading size={6} caps textColor="rgba(255,0,0,0.8)" >or why Classes are bad...</Heading>
             </Slide>
             <Slide transition={[]} bgColor="primary" >
                     <Heading fit caps>Lets make a user card</Heading>
@@ -193,21 +199,21 @@ const Presentation = () => {
             <Slide transition={['fade']} bgColor="tertiary">
                 <Layout>
                     <Fill>
-                        <Heading size={4} padding="30px" textColor="primary" caps>with class</Heading>
+                        <Appear order={2}>
+                            <Heading size={4} padding="30px" textColor="primary" caps>with class</Heading>
+                        </Appear>
                         <GetUser gender={userGender ? 'female' : 'male'}/>
                     </Fill>
-                    <Appear order={2}>
                         <Fill>
-                            <Heading size={4} padding="30px" textColor="primary" caps>with hooks</Heading>
+                            <Appear order={3}>
+                                <Heading size={4} padding="30px" textColor="primary" caps>with hooks</Heading>
+                            </Appear>
                             <GetUserHooks gender={userGender ? 'female' : 'male'}/>
                         </Fill>
-                    </Appear>
                 </Layout>
-                <Appear order={1}>
                     <div className="get-user-btn" onClick={() => setUserGender(!userGender)}>
                         <Heading size={3} textColor="tertiary">Get a {userGender ? 'male' : 'female'}</Heading>
                     </div>
-                </Appear>
             </Slide>
             <CodeSlide
                 light
@@ -240,13 +246,23 @@ const Presentation = () => {
                 }/>
 
             {/*Hooks in the industry*/}
-            <Slide transition={['fade']} bgColor="tertiary" textColor="primary">
-                <Heading size={6} caps textColor="primary" fit>Hooks in the industry (useImmer, useSpring)</Heading>
+            <Slide 
+                align="center flex-start"
+                transition={['fade']} 
+                bgColor="tertiary" 
+                textColor="primary">
+                <Heading size={6} caps textColor="primary" fit>Hooks in the industry</Heading>
+                <div className="card-container">
+                    <Card title="useRedux" code={useReduxText}/>
+                    <Card title="useSession" img={useSessionGif}/>
+                    <Card title="useIdb - use indexDB" code={useIdbText}/>
+                    <Card title="useObservable - mobx-react-lite" code={useObservableText}/>
+                    <Card title="useUndo - undo/redo functionality" img={useUndoGif}/>
+                    <Card title="useObservable - mobx-react-lite" code={useImmerText}/>
+                </div>
             </Slide>
-
-            {/*Outside resource*/}
-            <Slide transition={['fade']} bgColor="tertiary" textColor="primary">
-                <Heading size={6} caps textColor="primary" fit>Outside resource</Heading>
+            <Slide transition={['fade']} bgColor="tertiary">
+                <Image fit src={tweet} />
             </Slide>
 
             {/*Questions*/}

@@ -17,7 +17,7 @@ const GetUserHooks = ({gender}) => {
     },[gender])
 
     return user ? <UserCard user={user}/>:
-    <Heading textColor="primary">Loading...</Heading>
+    <Heading fit textColor="primary">Loading...</Heading>
     
 }
 
